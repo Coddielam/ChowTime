@@ -1,3 +1,4 @@
 import Landing from './Landing';
+import Menu from './Menu';
 
-export { Landing };
+export { Landing, Menu };

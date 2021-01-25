@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './Header.scss';
 
 const Header = () => {
@@ -5,7 +7,7 @@ const Header = () => {
         <>
             <header>
                 <nav>
-                    <a>Stuff</a>
+                    <Link to="/dev">Dev Pages</Link>
                 </nav>
             </header>
         </>
