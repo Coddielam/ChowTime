@@ -10,7 +10,6 @@ const {check, validationResult} = require("express-validator");
  */ 
 router.post("/", 
 [
-    check("menu", "Restaurant id missing" ).not().isEmpty(),
     check("restaurant", "Must provide a restaurant name" ).not().isEmpty(),
     check("address", "Must provide an address" ).not().isEmpty(),
     check("courses", "Must include at least 1 course").not().isEmpty(),
@@ -23,14 +22,7 @@ async (req, res)=>{
         return res.status(400).json({errors: validationErrors.array()});
     }
     try {
-        const {menu, restaurant, address, courses, additional_charges, discount} = req.body;
-
-        let foundMenu = await Menus.findOne({menu: menu});
-        if (foundMenu) {
-            return res.status(400).json({
-                msg: "Menu already exist!"
-            })
-        }
+        const {restaurant, address, courses, additional_charges, discount} = req.body;
         // check menu item data format
         let courseDataErrorMsg = [];
         courses.forEach((item, index)=>{
@@ -48,7 +40,6 @@ async (req, res)=>{
 
         // no errors collected and record new document
         let Menu = new Menus({
-            menu: menu,
             restaurant: restaurant,
             address: address,
             courses: courses,
@@ -63,7 +54,7 @@ async (req, res)=>{
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server error");
+        return res.status(500).send("Server error");
     }
 })
 
@@ -77,10 +68,10 @@ async (req, res)=>{
 router.get("/", async (req, res) => {
     try {
         const menus = await Menus.find({});
-        res.status(200).json(menus);
+        return res.status(200).json(menus);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server error");
+        return res.status(500).send("Server error");
     }
 })
 
