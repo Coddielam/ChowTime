@@ -2,4 +2,8 @@ node_modules
 
 package-lock.json
 
+<<<<<<< HEAD
 .eslintcache
+=======
+config
+>>>>>>> ba23e2724a3e58848e34e42bd4abbee56614b98f
