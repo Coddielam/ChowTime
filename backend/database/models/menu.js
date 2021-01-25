@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const RestaurantsSchema = mongoose.Schema({
+const MenusSchema = mongoose.Schema({
+    menu: String,
     restaurant: String,
     address: String,
     courses: [
         {
-            id: mongoose.Schema.Types.ObjectId,
+            id: String,
             name: String,
             price: Number,
         }
@@ -18,4 +19,6 @@ const RestaurantsSchema = mongoose.Schema({
     discount: Number,
 })
 
-const RestaurantsSchema = mongoose.model("restaurantsSchema", RestaurantsSchema);
+const Menus = mongoose.model("restaurantsSchema", MenusSchema);
+
+module.exports = Menus;

@@ -3,15 +3,14 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// connect db
+/* connect db */
 connectDB();
 
+/* body parser */
 app.use(express.json());
 
-// routes
-app.get("/", (req, res)=>{
-    res.send("Chow time!")
-})
+/* routes */ 
+app.use("/api/menus", require("./routes/api/menus"));
 
 const PORT = process.env.PORT || 6969;
 
